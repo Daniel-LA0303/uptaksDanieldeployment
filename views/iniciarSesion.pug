@@ -1,0 +1,31 @@
+<!doctype html>
+html(lang="en")
+    head
+        head
+        //-importando el header
+        include  partials/header
+    body.login 
+        .contenedor-formulario 
+            h1 Iniciar Sesion Uptask
+                        
+            //-Mostrando errores en pantalla 
+            //-Provenientes del modelo
+            if locals.mensajes
+                .alertas
+                    each categoria in Object.keys(locals.mensajes)
+                        each error in mensajes[categoria]
+                            .alerta(class=`${categoria}`)
+                                p= error 
+
+            form#formulario.caja.caja-login(method="POST" action="/iniciar-sesion")
+                .campo 
+                    label(for="email") Email 
+                    input(type="email" name="email" placeholder="Tu email" value= email) 
+                .campo
+                    label(for="password") Password 
+                    input(type="password" name="password" placeholder="Tu password" value= password) 
+                .campo.enviar 
+                    input.boton(type="submit" value="Iniciar Sesion")
+                .campo.acciones
+                    a(href="/crear-cuenta") Crea una cuenta
+                    a(href="/reestablecer") ¿Olvidaste tu contraseña? 

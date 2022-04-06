@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+    head
+       //-importando el header
+       include  partials/header
+       
+    body 
+        header.barra 
+            h1 UpTask - Administrador de proyectos #{year}
+            a(href='/cerrar-sesion') Crear Sesion 
+            
+        main.contenedor 
+            aside.contenedor-proyectos
+                .panel.crear-proyecto 
+                    a(href="/nuevo-proyecto" class="boton") NuevoProyecto 
+                        span +
+                .panel.lista-proyectos 
+                    h2 Proyectos
+                    ul#proyectos.proyectos 
+                        if(proyectos.length)
+                            each proyecto in proyectos
+                                li 
+                                    a(href=`/proyectos/${proyecto.url}`)  #{proyecto.nombre}
+            //- pre= vardump(proyectos)                
+            block contenido
+            
+
+        //-enlazando bundle
+        script(src="/dist/bundle.js") 
+        //-agregando fontawesome
+        script(src='https://kit.fontawesome.com/5b5bf7b4bb.js' crossorigin='anonymous')
